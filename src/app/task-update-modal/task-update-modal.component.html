@@ -1,0 +1,51 @@
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <div class="container">
+          <div class="row p-2">
+            <div class="col-6 text-start">Name :</div>
+            <div class="col-6 text-start">
+              <input type="text" [ngModel]="selectedInfo.name" />
+            </div>
+          </div>
+          <div class="row p-2">
+            <div class="col-6 text-start">Id :</div>
+            <div class="col-6 text-start">
+              <input type="text" [ngModel]="selectedInfo.id" />
+            </div>
+          </div>
+          <div class="row p-2">
+            <div class="col-6 text-start">Tech :</div>
+            <div class="col-6 text-start">
+              <select
+                class="form-select border border-1 border-dark rounded-1 p-1"
+                style="max-width: 94%"
+                aria-label="Default select example"
+                [ngModel]="selectedInfo.techId"
+              >
+                <option *ngFor="let tech of techs" [value]="tech.id">
+                  {{ tech.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary col-6 mt-md-4">
+            Update
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

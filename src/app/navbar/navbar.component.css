@@ -1,0 +1,19 @@
+.bg-color{
+    background-color:#347C98;
+}
+
+.navbar-nav .nav-link.active{
+    box-shadow: 2px 1px 7px #8080807d;
+}
+
+.cartitems{
+    width: 100%;
+    transform: translateY(10px);
+    overflow: hidden;
+    display: none;
+}
+.cart:hover .cartitems{
+    display: block;
+    visibility: visible;
+    border: 3px solid black;
+}

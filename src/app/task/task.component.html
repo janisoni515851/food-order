@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+      <ul>
+        <li *ngFor="let user of users">
+          <span (click)="onUserSelect(user.id)">
+            {{user.name}}
+          </span>
+        </li>
+      </ul>
+      <!-- <app-task-side-bar
+        [users]="users"
+        (selectUserEvent)="onUserSelect($event)"
+      ></app-task-side-bar> -->
+    </div>
+    <div class="col-9">
+      <!-- <app-task-side-bar [users]="[selectedUser]"></app-task-side-bar> -->
+      <app-task-info-card [userSelected]="selectedUser"></app-task-info-card>
+      <!-- <ng-template #noUser>
+        No User Selected, Please select a user
+      </ng-template> -->
+    </div>
+    <app-task-update-modal></app-task-update-modal>
+  </div>
+</div>

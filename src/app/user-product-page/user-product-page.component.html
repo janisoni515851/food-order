@@ -1,0 +1,190 @@
+<div class="row container-fluid g-0 justify-content-center">
+  <div class="row text-center g-0 p-2">
+    <h3>Create Product</h3>
+  </div>
+  <div class="row g-0 justify-content-center">
+    <div class="col-6 px-4">
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Name :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.name"
+            required
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Retailed Price :</div>
+        <div class="col-6">
+          <input
+            type="number"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.retailedPrice"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Sale Price :</div>
+        <div class="col-6">
+          <input
+            type="number"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.salePrice"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Quantity :</div>
+        <div class="col-6">
+          <input
+            type="number"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.qty"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Image Path :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.img"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Primaryinfo :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.primaryInfo"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Secondaryinfo :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.secondaryInfo"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Ternaryinfo :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.ternaryInfo"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Caption :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.caption"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product otherInfoBtn :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-center"
+            [(ngModel)]="addProduct.otherInfoBtn"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Product Type :</div>
+        <div class="col-6 border border-2 border-dark rounded-2">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="addProduct.imgType"
+          >
+            <option disabled ngValue="">Select Product Type</option>
+            <option ngValue="simple">Simple Product</option>
+            <option ngValue="variable">Variable Product</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-12 text-start fw-bolder text-danger P-2">
+        {{ errorMessage }}
+      </div>
+      <div class="row justify-content-center">
+        <div
+          class="btn btn-danger my-4 col-4"
+          (click)="addUserProduct()"
+          *ngIf="swapBtn == false"
+        >
+          Add Product
+        </div>
+      </div>
+
+      <!-- <div
+        class="row g-0 btn btn-danger  my-4"
+        (click)="addUserProduct()"
+        *ngIf="swapBtn == false"
+      >
+        Add Product
+      </div> -->
+      <div
+        class="btn btn-danger col-4 my-4"
+        (click)="updateUserProduct()"
+        *ngIf="swapBtn == true"
+      >
+        Update Product
+      </div>
+    </div>
+    <div class="col-6 px-4">
+      <div class="row g-0 p-2" *ngIf="errorMessage == ''">
+        <table class="table text-center">
+          <tr *ngIf="proList.length != 0" class="border">
+            <th class="p-2 border border-2 border-dark">ID</th>
+            <th class="p-2 border border-2 border-dark">Product Name</th>
+            <th class="p-2 border border-2 border-dark">Price</th>
+            <th class="p-2 border border-2 border-dark">Quantity</th>
+            <!-- <th class="p-2 border border-2 border-dark">Isdisabled</th>
+            <th class="p-2 border border-2 border-dark">Isadded</th> -->
+            <th class="p-2 border border-2 border-dark">Action</th>
+          </tr>
+          <tr *ngFor="let product of proList; let i = index">
+            <td class="p-2 border border-2 border-dark">{{ i }}</td>
+            <td class="p-2 border border-2 border-dark">{{ product.name }}</td>
+            <td class="p-2 border border-2 border-dark">
+              {{ product.salePrice }}
+            </td>
+            <td class="p-2 border border-2 border-dark">{{ product.qty }}</td>
+            <!-- <td class="p-2 border border-2 border-dark">
+              {{ product.isDisabled }}
+            </td>
+            <td class="p-2 border border-2 border-dark">
+              {{ product.isAdded }}
+            </td> -->
+            <td
+              class="justify-content-centerd-flex p-2 border border-2 border-dark"
+            >
+              <div class="btn btn-danger me-2" (click)="deleteProduct(i)">
+                Delete
+              </div>
+              <div class="btn btn-primary" (click)="editProduct(i)">Edit</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- <a class="btn btn-danger col-4"  routerLink="/cart" routerLinkActive="active">Home page</a> -->
+  </div>
+</div>

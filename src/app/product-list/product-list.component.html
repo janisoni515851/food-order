@@ -1,0 +1,66 @@
+<div class="row container-fluid g-0 px-5 pb-5">
+  <div class="row justify-content-center text-center container-fluid p-4">
+    <div class="col-6 pt-4">
+      <h4>Product List</h4>
+    </div>
+  </div>
+    <div class="row g-0">
+      <div
+        class="col-md-3 col-sm-6 px-4 py-2"
+        *ngFor="let product of proList; let i = index"
+      >
+        <div class="card p-2" style="min-height: 362px">
+          <div class="d-flex align-item-center justify-content-center">
+            <img
+              [src]="product.img"
+              class="card-img-top py-2"
+              alt="..."
+              style="width: 150px; min-height: 165px"
+            />
+          </div>
+          <div
+            class="card-body p-2 d-flex justify-content-end align-item-center flex-column"
+          >
+            <p class="text-dark fw-semibold mb-0" style="font-size: 12px">
+              {{ product.secondaryInfo }}
+            </p>
+            <h5 class="text-dark mb-0">{{ product.name }}</h5>
+            <p
+              *ngIf="product.otherInfoBtn && product.otherInfoBtn != ''"
+              style="
+                color: orange;
+                border: 1px solid orange;
+                max-width: 180px;
+                font-size: 10px;
+                border-radius: 3px;
+              "
+              class="fw-semibold text-center mb-0 mt-2"
+            >
+              {{ product.otherInfoBtn }}
+            </p>
+            <p style="color: orange; font-size: 18px" class="fw-semibold mb-0">
+              <span *ngIf="product.primaryInfo != ''"
+                >[{{ product.primaryInfo }}]</span
+              >
+            </p>
+            <p class="text-secondary mb-0" style="font-size: 13px">
+              <span *ngIf="product.caption != ''">{{ product.caption }}</span>
+            </p>
+            <p
+              *ngIf="product.ternaryInfo != ''"
+              style="color: brown; font-size: 13px"
+              class="mb-0"
+            >
+              {{ product.ternaryInfo }}
+            </p>
+            <button
+              class="btn btn-danger mt-2"
+              (click)="addToCart(product, i)"
+              [disabled]="product.isAdded"
+            >
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>

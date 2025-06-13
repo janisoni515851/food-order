@@ -1,0 +1,44 @@
+<div *ngIf="userSelected; else noUser">
+  <!-- {{ selectedUser.name }} -->
+  <div class="card">
+    <div class="card-body">
+      {{ userSelected.name }}
+      <div class="row">
+        <div class="col-6">
+          <div class="row">
+            <div class="col-12">ID - {{ userSelected.id }}</div>
+            <div class="col-12">
+              Tech - {{ getTechName(userSelected.techId) }}
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div
+            style="
+              width: 100px;
+              height: 100px;
+              background-color: black;
+              color: white;
+            "
+          >
+            {{ userSelected.avatar }}
+          </div>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Edit
+      </button>
+      <app-task-update-modal [selectedInfo]="userSelected"></app-task-update-modal>
+    </div>
+  </div>
+</div>
+<ng-template #noUser>
+  <div class="text-center mt-4">No User Selected, Please select a user</div>
+</ng-template>
+
+<div class="card" *ngIf="editCase"></div>

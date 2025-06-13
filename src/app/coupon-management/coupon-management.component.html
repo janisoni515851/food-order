@@ -1,0 +1,195 @@
+<div class="row container-fluid g-0 justify-content-center">
+  <div class="row g-0 ">
+    <div class="col-4 px-2">
+      <div class="row text-center g-0 p-2">
+        <h3>Create Coupon</h3>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Coupon Code :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-start"
+            [(ngModel)]="couponCreate.code"
+            required
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Coupon Primary Info :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-start"
+            [(ngModel)]="couponCreate.primaryInfo"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Coupon Secondary Info :</div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control border border-2 border-dark text-start"
+            [(ngModel)]="couponCreate.secondaryInfo"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Coupon discount :</div>
+        <div class="col-6">
+          <input
+            type="number"
+            class="form-control border border-2 border-dark text-start"
+            [(ngModel)]="couponCreate.discount"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Coupon discount type :</div>
+        <div class="col-6 border border-dark rounded-2 border-2">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="couponCreate.discountType"
+          >
+            <option disabled [ngValue]="0">Select Discount Type</option>
+            <option *ngFor="let type of discountTypes" [ngValue]="type.id">
+              {{ type.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Min Cart Value :</div>
+        <div class="col-6">
+          <input
+            type="number"
+            class="form-control border border-2 border-dark text-start"
+            [(ngModel)]="couponCreate.minCartValue"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Coupon Expiry :</div>
+        <div class="col-6">
+          <input
+            class="form-control border border-2 border-dark text-start"
+            type="date"
+            [(ngModel)]="couponCreate.expiry"
+            name="birthday"
+          />
+        </div>
+      </div>
+      <div class="row g-0 p-2">
+        <div class="col-6 fw-semibold">Coupon Type :</div>
+        <div class="col-6 border border-dark rounded-2 border-2">
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            [(ngModel)]="couponCreate.couponType"
+          >
+            <option disabled ngValue="">Select Coupon Type</option>
+            <option ngValue="online">Online</option>
+            <option ngValue="offline">Offline</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-12 text-start fw-bolder text-danger P-2">
+        {{ errorMessage }}
+      </div>
+      <div class="row justify-content-center">
+        <div
+          class="btn btn-danger my-4 col-4"
+          (click)="createCoupon()"
+          *ngIf="swapBtn == false"
+        >
+          Create Coupon
+        </div>
+      </div>
+
+      <div
+        class="btn btn-danger col-4 my-4"
+        (click)="updateUserProduct()"
+        *ngIf="swapBtn == true"
+      >
+        Update Product
+      </div>
+    </div>
+    <div class="col-8 px-2">
+      <div class="row text-center g-0 p-2">
+        <h3>Coupon List</h3>
+      </div>
+      <div class="row g-0 p-2" *ngIf="errorMessage == ''">
+        <table class="table text-center">
+          <tr *ngIf="couponList.length != 0" class="border">
+            <th class="p-2 border border-2 border-dark">ID</th>
+            <th class="p-2 border border-2 border-dark">Coupon name</th>
+            <th class="p-2 border border-2 border-dark">Discount</th>
+            <th class="p-2 border border-2 border-dark">Discount Type</th>
+            <!-- <th class="p-2 border border-2 border-dark">Isdisabled</th>
+            <th class="p-2 border border-2 border-dark">Isadded</th> -->
+            <th class="p-2 border border-2 border-dark">Min Cart Value</th>
+            <th class="p-2 border border-2 border-dark">Created At</th>
+            <th class="p-2 border border-2 border-dark">Updated At</th>
+            <th class="p-2 border border-2 border-dark">Expiry</th>
+            <th class="p-2 border border-2 border-dark">Action</th>
+          </tr>
+          <tr *ngFor="let coupon of couponList; let i = index">
+            <td class="p-2 border border-2 border-dark">{{ i + 1 }}</td>
+            <td class="p-2 border border-2 border-dark">
+              {{ coupon.code }} <br> 
+              <span  class="badge" [class]="coupon.isActive ? 'text-bg-success' : 'text-bg-danger'">
+                {{coupon.isActive ? 'Active' : 'InActive'}}
+              </span>
+            </td>
+            <td class="p-2 border border-2 border-dark">
+              {{ coupon.discount }}
+            </td>
+            <td class="p-2 border border-2 border-dark">
+              {{ getDiscountType(coupon.discountType) }}
+            </td>
+            <td class="p-2 border border-2 border-dark">
+              {{ coupon.minCartValue }}
+            </td>
+            <td class="p-2 border border-2 border-dark">
+              {{ coupon.createdAt }}
+            </td>
+            <td class="p-2 border border-2 border-dark">
+              {{ coupon.updatedAt }}
+            </td>
+            <td class="p-2 border border-2 border-dark">
+              {{ coupon.expiry }}
+            </td>
+
+            <td
+              class="justify-content-centerd-flex p-2 border border-2 border-dark"
+            >
+              <div class="btn btn-danger me-2" (click)="deleteProduct(i)">
+                Delete
+              </div>
+              <div class="btn btn-primary me-2" (click)="editProduct(i)">
+                Edit
+              </div>
+              <div
+                class="btn btn-success  mt-2"
+                (click)="isActive(i)"
+                *ngIf="coupon.isActive == false"
+              >
+                Active
+              </div>
+              <div
+                class="btn btn-primary  mt-2"
+                (click)="inActive(i)"
+                *ngIf="coupon.isActive == true"
+              >
+                In-Active
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- <a class="btn btn-danger col-4"  routerLink="/cart" routerLinkActive="active">Home page</a> -->
+  </div>
+</div>
