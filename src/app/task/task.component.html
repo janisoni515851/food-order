@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-3">
       <ul>
-        <li *ngFor="let user of users">
-          <span (click)="onUserSelect(user.id)">
+        <li *ngFor="let user of users; let i = index">
+          <span (click)="onUserSelect(user.id,i)">
             {{user.name}}
           </span>
         </li>
@@ -15,7 +15,7 @@
     </div>
     <div class="col-9">
       <!-- <app-task-side-bar [users]="[selectedUser]"></app-task-side-bar> -->
-      <app-task-info-card [userSelected]="selectedUser"></app-task-info-card>
+      <app-task-info-card [userSelected]="selectedUser" (onUpdation)="finalUpdation($event)"></app-task-info-card>
       <!-- <ng-template #noUser>
         No User Selected, Please select a user
       </ng-template> -->
