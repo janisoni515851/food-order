@@ -33,7 +33,7 @@
       >
         Edit
       </button>
-      <app-task-update-modal [selectedInfo]="userSelected"></app-task-update-modal>
+      <app-task-update-modal [selectedInfo]="userSelected" (onUserUpdate)="userUpdated($event)"></app-task-update-modal>
     </div>
   </div>
 </div>

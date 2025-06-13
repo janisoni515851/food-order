@@ -19,4 +19,9 @@ export class TaskInfoCardComponent {
       return 'No Matching Tech';
     }
   }
+
+  userUpdated(event: any) {
+    console.log('event', event);
+    this.userSelected = event;
+  }
 }

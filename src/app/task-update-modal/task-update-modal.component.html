@@ -12,13 +12,13 @@
           <div class="row p-2">
             <div class="col-6 text-start">Name :</div>
             <div class="col-6 text-start">
-              <input type="text" [ngModel]="selectedInfo.name" />
+              <input type="text" [(ngModel)]="selectedUser.name" />
             </div>
           </div>
           <div class="row p-2">
             <div class="col-6 text-start">Id :</div>
             <div class="col-6 text-start">
-              <input type="text" [ngModel]="selectedInfo.id" />
+              <input type="text" [(ngModel)]="selectedUser.id" />
             </div>
           </div>
           <div class="row p-2">
@@ -28,7 +28,7 @@
                 class="form-select border border-1 border-dark rounded-1 p-1"
                 style="max-width: 94%"
                 aria-label="Default select example"
-                [ngModel]="selectedInfo.techId"
+                [(ngModel)]="selectedUser.techId"
               >
                 <option *ngFor="let tech of techs" [value]="tech.id">
                   {{ tech.name }}
@@ -36,7 +36,7 @@
               </select>
             </div>
           </div>
-          <button type="button" class="btn btn-primary col-6 mt-md-4">
+          <button type="button" class="btn btn-primary col-6 mt-md-4" (click)="updateUser()" data-bs-dismiss="modal">
             Update
           </button>
         </div>
